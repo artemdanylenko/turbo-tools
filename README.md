@@ -1,4 +1,5 @@
 # turbo-tools
+
 A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo.
 
 [TurboRepo](https://turbo.build/), by itself, is fantastic, and you should definitely use it! However, there are a few extra commands that could be added to really make the TurboRepo experience perfect and fully-featured out of the box. This is where [Turbo Tools](https://github.com/benduran/turbo-tools) comes in!
@@ -54,6 +55,7 @@ Options:
 ```
 
 ### `version` command
+
 Used to version bump each package in your repository. `alpha` and `beta` releases are treated as special cases, and a unique `git sha` value is appended to the generated / bumped version number.
 
 ```bash
@@ -117,8 +119,8 @@ Options:
 ```
 
 ### `publish` command
-Performs version bumping of your packages, and then attempts to publish said packages to whichever NPM registry you are using.
 
+Performs version bumping of your packages, and then attempts to publish said packages to whichever NPM registry you are using.
 
 ```bash
 npx turbo-tools publish --help
@@ -190,9 +192,11 @@ Options:
 ```
 
 ### `run` command
+
 This is a straight pass-through to `turbo run`, and accepts all the same values that [Turbo run does](https://turbo.build/repo/docs/reference/command-line-reference#turbo-run-task).
 
 ### `init` command
+
 Set your repository up to use Turbo Repo with a set of sensible defaults (including generating a `turbo.json` file).
 
 ```bash
@@ -209,6 +213,7 @@ Options:
 ```
 
 ### `ls` command
+
 Lists all of the packages that have been detected by the tools and NPM's workspace feature
 
 ```bash
@@ -227,7 +232,7 @@ Options:
 There are many cases where you might want to use Turbo Tools at your enterprise software organization, and might not be publishing packages to the public NPM registry. As such, you can customize which publish command is used for your use case, override guards for publishing, or merge additional contents into `package.json` files when you initialize your repository to work with Turbo and Turbo Tools. These can all be customized by placing a `turboTools.config.mjs` (**Note the `.mjs` extension**) file at the root of your repository. To get typing and IDE assistance for this config, you can use the provided pass-through `defineConfig` function (see below). Not all of the options are required!
 
 ```javascript
-import { defineTurboToolsConfig } from '@better-builds/turbo-tools';
+import { defineTurboToolsConfig } from "@better-builds/turbo-tools";
 
 export default defineTurboConfig({
   init: {
@@ -250,16 +255,16 @@ export default defineTurboConfig({
     // you can construct the command and its arguments here and return them to have Turbo Tools
     // call the command when publishing each package in the repository
     getCommand({ dryRun, force, releaseAs, packageName, packagePath, publishTag, yes }) {
-      if (packageName === '@my-monorepo-package/some-package') {
-        return { args: [], cmd: 'package-specific-publish-command' };
+      if (packageName === "@my-monorepo-package/some-package") {
+        return { args: [], cmd: "package-specific-publish-command" };
       }
 
-      const cmd = 'custom-publish-command';
-      const args = ['publish'];
-      if (releaseAs) args.push('--release-as', releaseAs);
-      if (dryRun) args.push('--dry-run');
-      if (publishTag) args.push('--tag', publishTag);
-      args.push('--no-commit', '--no-push', '--no-publish-confirm');
+      const cmd = "custom-publish-command";
+      const args = ["publish"];
+      if (releaseAs) args.push("--release-as", releaseAs);
+      if (dryRun) args.push("--dry-run");
+      if (publishTag) args.push("--tag", publishTag);
+      args.push("--no-commit", "--no-push", "--no-publish-confirm");
 
       return { args, cmd };
     },
@@ -267,13 +272,15 @@ export default defineTurboConfig({
   version: {
     // accepts all the same configuration options supported by the @better-builds/lets-version library.
     // https://github.com/benduran/lets-version#advanced-configuration
-    changelog: {
-    },
+    changelog: {},
   },
 });
 ```
 
 ## get started contributing
+
 1. Clone this repo
-2. Run `./repo-setup.sh`
-3. Happy hacking! ⌨️
+2. Install [mise](https://mise.jdx.dev/) so you're using the same tool versions this repo uses.
+3. Run `./repo-setup.sh`
+4. Run all your commands via `mise x -- bun <SCRIPT>`
+5. Happy hacking! ⌨️

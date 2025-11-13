@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ "$CI" != "" ]; then
-  bun i --frozen-lockfile
+  mise x -- bun i --frozen-lockfile
 else
-  bun i
+  mise x -- bun i
 fi
 
-bun husky install
+mise x -- bun husky install
