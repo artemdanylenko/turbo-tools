@@ -1,3 +1,11 @@
+## 7.4.2 (2025-11-13)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: updated deps, docs and added mise support (279bc607035d9366d23bb1a962e4d336e8a1bfef)
+
+---
+
 ## 7.4.1 (2025-11-03)
 
 ### 🔀 Miscellaneous 🔀
