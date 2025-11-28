@@ -1,3 +1,11 @@
+## 7.4.3 (2025-11-28)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped deps (f9bfa91de53cd34874ab14706dd87abb5b0be131)
+
+---
+
 ## 7.4.2 (2025-11-13)
 
 ### 🔀 Miscellaneous 🔀
